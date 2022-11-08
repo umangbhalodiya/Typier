@@ -153,11 +153,63 @@ const IndexPage = () => {
       setRecords([]);
     }
   };
-  
+
   return (
     <>
       <div className="font-inter p-8 md:p-14 lg:p-16">
-        <div className="lg:flex justify-around">
+        <div>
+          {" "}
+          <Heading />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "30px",
+            }}
+          >
+            <WordContainer
+              words={words}
+              isInputCorrect={isInputCorrect || wordInput.length === 0}
+            />
+          </div>
+          <div className="flex flex-column flex-wrap   items-center justify-center mt-8 ">
+            <Box component="form" noValidate autoComplete="off">
+              <TextField
+                id="outlined-basic"
+                label="Type"
+                variant="outlined"
+                value={wordInput}
+                disabled={timer === 0}
+                onChange={(e) => {
+                  inputHandler(e?.target);
+                }}
+                onKeyUp={(e) => {
+                  keyUpHandler(e?.target);
+                }}
+              />
+            </Box>
+          </div>
+          <div className="calc-timer-items">
+            <Timer timer={timer} />
+            <RestartButton
+              onClick={() => {
+                restartHandler();
+              }}
+            />
+          </div>
+          <Result
+            wpm={Math.round(correctKeystroke)}
+            correctKeystroke={correctKeystroke}
+            wrongKeystroke={wrongKeystroke}
+            accuracy={(
+              (correctKeystroke * 100) /
+              (totalKeyStrokes + correction)
+            ).toFixed(2)}
+            correctWords={correctWords}
+            wrongWords={wrongWords}
+          />
+        </div>
+        {/* <div className="lg:flex flex-column justify-around">
           <div className="flex-none">
             <Heading />
             <div className="md:max-w-4xl lg:max-w-2xl xl:max-w-3xl lg:mr-8">
@@ -165,7 +217,7 @@ const IndexPage = () => {
                 words={words}
                 isInputCorrect={isInputCorrect || wordInput.length === 0}
               />
-              <div className="flex flex-row flex-wrap md:flex-nowrap items-center justify-center mt-6 md:mt-8">
+              <div className="flex flex-column flex-wrap md:flex-nowrap items-center justify-center mt-6 md:mt-8">
                 <Box
                   component="form"
                   sx={{
@@ -188,16 +240,7 @@ const IndexPage = () => {
                     }}
                   />
                 </Box>
-                {/* <input
-                  value={wordInput}
-                  disabled={timer === 0}
-                  onChange={(e) => {
-                    inputHandler(e?.target);
-                  }}
-                  onKeyUp={(e) => {
-                    keyUpHandler(e?.target);
-                  }}
-                /> */}
+
                 <div className="flex-0 flex my-5 lg:my-0">
                   <Timer timer={timer} />
                   <RestartButton
@@ -206,11 +249,6 @@ const IndexPage = () => {
                     }}
                   />
                 </div>
-                {/* <LanguageSelector
-                  disabled={isTimerStarted}
-                  language={language}
-                  onChange={()=>{languageHandler()}}
-                /> */}
               </div>
             </div>
           </div>
@@ -226,13 +264,8 @@ const IndexPage = () => {
               correctWords={correctWords}
               wrongWords={wrongWords}
             />
-            {/* <Records
-              records={records}
-              clearRecords={clearRecords}
-              language={language}
-            /> */}
           </div>
-        </div>
+        </div> */}
       </div>
       <Footer />
     </>

@@ -1,7 +1,8 @@
 import "tailwindcss/tailwind.css";
+import "../pages/styles/style.scss";
 import Head from "next/head";
 import { AppProps } from "next/app";
-const  MyApp = ({ Component, pageProps })=> {
+const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
@@ -11,6 +12,6 @@ const  MyApp = ({ Component, pageProps })=> {
       <Component {...pageProps} />
     </>
   );
-}
+};
 
 export default MyApp;

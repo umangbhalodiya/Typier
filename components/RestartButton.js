@@ -7,7 +7,8 @@ import React from "react";
 const RestartButton = (props) => {
   return (
     <div
-      className="flex-none p-3 text-gray-100 bg-indigo-600 ml-2 md:ml-3 rounded-lg cursor-pointer"
+      className="flex-none p-3 text-gray-100  ml-2 md:ml-3 rounded-lg cursor-pointer"
+      style={{ background: "#003d4e" }}
       onClick={props.onClick}
     >
       <svg
